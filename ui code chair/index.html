@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Care | Secure Access</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
+        
+        body {
+            background: #1a1a2e; /* Dark professional background */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            width: 100%;
+            max-width: 380px;
+            border-top: 8px solid #1abc9c;
+        }
+
+        .login-container h2 { color: #2c3e50; margin-bottom: 20px; text-align: center; }
+
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #34495e; }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #dfe6e9;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus { border-color: #1abc9c; outline: none; }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: #1abc9c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .login-btn:hover { background: #16a085; }
+
+        #msg { 
+            margin-top: 15px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: none; 
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .error { background: #fee2e2; color: #dc2626; }
+        .success { background: #dcfce7; color: #16a34a; }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>AI Care Login</h2>
+        
+        <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="email" placeholder="Enter authorized email">
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="pass" placeholder="Enter password">
+        </div>
+
+        <button class="login-btn" onclick="startLogin()">Login</button>
+
+        <div id="msg"></div>
+    </div>
+
+    <script>
+        function startLogin() {
+            const userEmail = document.getElementById('email').value.toLowerCase().trim();
+            const userPass = document.getElementById('pass').value;
+            const msgBox = document.getElementById('msg');
+
+            // 🔒 STRICT AUTHORIZED LIST
+            const VALID_ACCOUNTS = [
+                "herambpadhye@gmail.com",
+                "drom@gmail.com",
+                "suyashshinde@gmail.com"
+            ];
+
+            const MASTER_PASS = "pass@123";
+
+            // Check if email is in the list AND password is correct
+            if (VALID_ACCOUNTS.includes(userEmail)) {
+                if (userPass === MASTER_PASS) {
+                    // SUCCESS
+                    msgBox.style.display = "block";
+                    msgBox.className = "success";
+                    msgBox.innerHTML = "✅ Login Successful! Redirecting...";
+                    
+                    sessionStorage.setItem("user", userEmail);
+                    
+                    setTimeout(() => {
+                        window.location.href = "./home.html";
+                    }, 1000);
+                } else {
+                    // WRONG PASSWORD
+                    showError("❌ Incorrect Password!");
+                }
+            } else {
+                // NOT AN AUTHORIZED ACCOUNT
+                showError("❌ Access Denied: Unregistered Account!");
+            }
+        }
+
+        function showError(text) {
+            const msgBox = document.getElementById('msg');
+            msgBox.style.display = "block";
+            msgBox.className = "error";
+            msgBox.innerHTML = text;
+        }
+    </script>
+
+</body>
+</html>

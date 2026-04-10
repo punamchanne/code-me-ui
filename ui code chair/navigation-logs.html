@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Care | Navigation Logs</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { display: flex; background-color: #f4f7f6; height: 100vh; }
+        
+        /* Sidebar */
+        .sidebar { width: 250px; background-color: #2c3e50; color: white; padding: 20px; }
+        .sidebar h2 { color: #1abc9c; margin-bottom: 30px; text-align: center; }
+        .sidebar ul { list-style: none; }
+        .sidebar ul li { padding: 15px; border-radius: 8px; margin-bottom: 10px; cursor: pointer; }
+        .sidebar ul li:hover, .sidebar ul li.active { background-color: #34495e; color: #1abc9c; }
+        .sidebar a { text-decoration: none; color: inherit; display: block; }
+
+        /* Main Content */
+        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
+        header { margin-bottom: 30px; }
+
+        /* Table Styling */
+        .log-container { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background-color: #f8f9fa; color: #7f8c8d; text-transform: uppercase; font-size: 0.8rem; }
+        
+        .status-pill { padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
+        .moving { background: #e8f5e9; color: #2e7d32; }
+        .blocked { background: #ffebee; color: #c62828; }
+        .manual { background: #e3f2fd; color: #1565c0; }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>AI Care</h2>
+        <ul>
+            <li><a href="home.html">Dashboard</a></li>
+            <li><a href="patient-info.html">Patient Info</a></li>
+            <li class="active"><a href="navigation-logs.html">Navigation Logs</a></li>
+            <li><a href="emergency.html">Emergency Settings</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h1>Navigation & Movement Logs</h1>
+            <p>Tracking real-time wheelchair pathing and obstacle history.</p>
+        </header>
+
+        <div class="log-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>Action/Event</th>
+                        <th>Location/Distance</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2026-02-18 10:15:22</td>
+                        <td>Auto-Nav to Bedroom</td>
+                        <td>Room 302</td>
+                        <td><span class="status-pill moving">Completed</span></td>
+                    </tr>
+                    <tr>
+                        <td>2026-02-18 09:45:10</td>
+                        <td>Obstacle Detected</td>
+                        <td>15cm - Front</td>
+                        <td><span class="status-pill blocked">Auto-Stopped</span></td>
+                    </tr>
+                    <tr>
+                        <td>2026-02-18 09:12:05</td>
+                        <td>Manual Control</td>
+                        <td>Main Lobby</td>
+                        <td><span class="status-pill manual">User Active</span></td>
+                    </tr>
+                    <tr>
+                        <td>2026-02-18 08:30:00</td>
+                        <td>System Startup</td>
+                        <td>Charging Dock</td>
+                        <td><span class="status-pill moving">Online</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
